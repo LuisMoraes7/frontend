@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="resultados">
+        
+    </div>
+    <p>Favor ler o código</p>
+    <script>
+        const pessoas = [
+        { altura: 1.75, genero: "Masculino" },
+        { altura: 1.62, genero: "Feminino" },
+        { altura: 1.80, genero: "Masculino" },
+        { altura: 1.55, genero: "Feminino" },
+        { altura: 1.90, genero: "Masculino" },
+        { altura: 1.68, genero: "Feminino" },
+        { altura: 1.72, genero: "Masculino" },
+        { altura: 1.58, genero: "Feminino" },
+        { altura: 1.85, genero: "Masculino" },
+        { altura: 1.60, genero: "Feminino" },
+        { altura: 1.77, genero: "Masculino" },
+        { altura: 1.65, genero: "Feminino" },
+        { altura: 1.88, genero: "Masculino" },
+        { altura: 1.70, genero: "Feminino" },
+        { altura: 1.78, genero: "Masculino" }
+    ];
+    const div = document.getElementById("resultados")
+    const alturas = []
+    const homens = []
+    const mulheres = []
+    for (pessoa in pessoas){
+        div.innerHTML += `
+            <p>Altura: ${pessoas[pessoa].altura}, gênero: ${pessoas[pessoa].genero}</p>
+        `
+        alturas.push(pessoas[pessoa].altura)
+        if (pessoas[pessoa].genero === "Masculino"){
+            homens.push(pessoas[pessoa])
+        } else{
+            mulheres.push(pessoas[pessoa])
+        }
+
+    }
+    const maiorAltura = Math.max(...alturas);
+    const menorAltura = Math.min(...alturas);
+    
+    let c = 0
+    for (homem in homens){
+        c += homens[homem].altura
+    }
+    const mediaAlturaHomens = (c)/homens.length;
+
+
+    div.innerHTML += `
+        <p>Maior altura: ${maiorAltura}m</p>
+        <p>Menor altura: ${menorAltura}m</p>
+        <p>Média de altura dos homens: ${mediaAlturaHomens.toFixed(2)}m</p>
+        <p>Número de mulheres: ${mulheres.length}</p>
+    `;
+    </script>
+</body>
+</html>
