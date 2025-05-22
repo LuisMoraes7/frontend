@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagens</title>
+    <link rel="stylesheet" href="css/default.css" />
+</head>
+<body onload="getMensagens()">
+    <div class="page">
+        <header>
+          <div id="title">
+            <img src="images/barco1.png" alt="ícone de barco" />
+            <div class="headtitle">
+              <h1>Luxo</h1>
+              <h2>Aluguel de iates</h2>
+            </div>
+          </div>
+    
+          <nav>
+            <ul class="navmenu">
+              <li><a href="admin.html">sair</a></li>
+            </ul>
+          </nav>
+        </header>
+        <div class="pagtitle">
+            <div class="bgtitle"></div>
+            <h2>Mensagens</h2>
+          </div>
+        <main></main>
+    <script>
+        function analisaGeral(string, id){
+            if (id == 1){
+                if (string == ""){
+                    return "Nome não encontrado"
+                } else{
+                    return string
+                }
+            } else if (id == 2){
+                if (string == ""){
+                    return "italic"
+                } else{
+                    return ""
+                }
+            } else if (id == 3){
+            if (string == ""){
+                return "Mensagem não encontrada."
+
+            } else{
+                return '"' + string + '"';
+            }
+            } else if (id == 4){
+            if (string == ""){
+                return "Email não encontrado."
+
+            } else{
+                return string;
+            }
+            }
+
+        }
+
+        function getMensagens(){
+            objetos = obterMensagens()
+            objetos.forEach(element => {
+                console.log(JSON.stringify(element))
+                novaDiv = document.createElement("div")
+                novaDiv.id = "mymsg"
+                
+                novaDiv.innerHTML = 
+                `
+            <div class="items">
+                <p id="${analisaGeral(element.nome, 2)}" > 
+                    ${analisaGeral(element.nome, 1)} 
+                    <span id="userEmail">${analisaGeral(element.email, 4)}</span>
+                </p>
+            </div>
+            <div style="max-width: 600px">
+                <p id="${analisaGeral(element.mensagem, 2)}" >
+                    ${analisaGeral(element.mensagem, 3)}
+                </p>
+            </div>
+    `
+                const main = document.querySelector("main");
+                main.appendChild(novaDiv)
+
+            });
+        }
+    </script>
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/api.js"></script>
+</body>
+</html>
